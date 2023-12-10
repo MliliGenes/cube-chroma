@@ -113,7 +113,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    colorPalette && avgColor && setLoading(false);
+    colorPalette && avgColor && setTimeout(() => setLoading(false), 1000);
   });
 
   useEffect(() => {
@@ -386,7 +386,7 @@ const App = () => {
   return (
     <div>
       {loading ? (
-        <Loader />
+        <Loader bgColor={avgColor} c={color} />
       ) : (
         <div className="container">
           {exportActive && (

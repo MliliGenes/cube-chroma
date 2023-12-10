@@ -62,12 +62,12 @@ export default function Controls({
           <i className="fa-solid fa-minus"></i>
         </div>
       </Tooltip>
-      <div className="btn smallShadow">
+      {/* <div className="btn smallShadow">
         <i className="fa-solid fa-rotate-left"></i>
       </div>
-      <div className="btn smallShadow">
+      <div className="btn smallShadow" >
         <i className="fa-solid fa-rotate-right"></i>
-      </div>
+      </div> */}
       <Tooltip
         title="Generate ( spacebar )"
         position="top"

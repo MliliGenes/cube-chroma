@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .container {
@@ -301,11 +302,11 @@
 }
 
 .spinner > div {
-  background-color: rgba(79, 79, 79, 0.2);
+  background-color: color-mix(in srgb, var(--bgColor) 40%, transparent 60%);
   height: 100%;
   position: absolute;
   width: 100%;
-  border: 2px solid #757575;
+  border: 2px solid var(--c);
 }
 
 .spinner div:nth-of-type(1) {
