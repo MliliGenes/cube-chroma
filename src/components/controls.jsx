@@ -79,7 +79,7 @@ export default function Controls({
           <i className="fa-solid fa-shuffle"></i>
         </div>
       </Tooltip>
-      <Tooltip title="Export" position="top" theme="light" arrow={true}>
+      <Tooltip title="Export ( E )" position="top" theme="light" arrow={true}>
         <div className="btn Shuffle smallShadow" onClick={exportState}>
           <span>Export</span>
           <i className="fa-solid fa-file-arrow-down"></i>

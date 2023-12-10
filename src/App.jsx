@@ -56,13 +56,17 @@ const App = () => {
   // }, 100);
 
   const handleSpace = (event) => {
-    if (event.key === " ") {
+    if (event.key === " " && event.target == document.body) {
+      event.preventDefault();
       generateBaseColors();
     }
-    if (event.keyCode == 32 && event.target == document.body) {
-      event.preventDefault();
-    }
   };
+
+  const handleEscape = debounce((event) => {
+    if (event.key === "Escape") {
+      setExportState(false);
+    }
+  }, 100);
 
   const handleI = debounce((event) => {
     if (event.key === "+") {
@@ -84,12 +88,14 @@ const App = () => {
 
   useEffect(() => {
     window.addEventListener("keydown", handleSpace);
+    window.addEventListener("keydown", handleEscape);
     window.addEventListener("keydown", handleI);
     window.addEventListener("keydown", handleD);
     window.addEventListener("keydown", handleS);
 
     return () => {
       window.removeEventListener("keydown", handleSpace);
+      window.removeEventListener("keydown", handleEscape);
       window.removeEventListener("keydown", handleI);
       window.removeEventListener("keydown", handleD);
       window.removeEventListener("keydown", handleS);
