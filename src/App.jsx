@@ -105,18 +105,25 @@ const App = () => {
   useEffect(() => {
     let colorScale = generateRandomPalette(color, method, colorsNum, true);
 
-    setColorPalette(() => {
-      return colorScale.map((color) => {
+    setColorPalette((prev) => {
+      return colorScale.map((color, index) => {
+        let newState = [...prev];
+
+        newState[index] = newState[index] || {};
+
         let hexValue = chroma(color).hex();
-        return {
+        let newColor = {
           color: hexValue,
           name: GetColorName(hexValue.replace("#", "")),
           isLocked: false,
-          isPickerActive: false,
+          isPickerActive: newState[index].isPickerActive,
         };
+
+        newState[index] = newState[index].isLocked ? newState[index] : newColor;
+        return newState[index];
       });
     });
-  }, []);
+  }, [method]);
 
   useEffect(() => {
     colorPalette && avgColor && setTimeout(() => setLoading(false), 1000);
@@ -356,28 +363,18 @@ const App = () => {
   `;
 
     const parser = new DOMParser();
-
     const doc = parser.parseFromString(tp, "text/html");
-
     const element = doc.body.firstChild;
-
     document.body.appendChild(element);
-
     console.log(hex, name);
     html2canvas(element)
       .then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
-
         const downloadLink = document.createElement("a");
-
         downloadLink.href = imgData;
-
         downloadLink.download = "Cube Chroma - " + name + " - " + hex + ".png";
-
         document.body.appendChild(downloadLink);
-
         downloadLink.click();
-
         document.body.removeChild(downloadLink);
       })
       .then(() => {
@@ -406,6 +403,11 @@ const App = () => {
           )}
           <Toaster />
           <Header color={colorPalette[0].color} bgColor={avgColor} />
+          {/* <input
+            type="color"
+            value={color.hex()}
+            onChange={(e) => setColor(chroma(e.target.value))}
+          /> */}
           <Controls
             method={method}
             upDateMethod={upDateMethod}

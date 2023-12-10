@@ -6,7 +6,7 @@ export default function generateRandomPalette(
   numColors,
   isFix
 ) {
-  let colorPalette;
+  let colorPalette = [];
 
   // Assuming baseColor is a Chroma object, we can directly use its methods such as .luminance(), .get(), etc.
   switch (algorithm) {
