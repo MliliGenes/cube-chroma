@@ -65,7 +65,6 @@ export default function generateRandomPalette(
         baseColor.set("hsl.h", (baseColor.get("hsl.h") + 270) % 360).hex(),
       ];
       break;
-    // ... (other cases) ...
     default:
       throw new Error(`Unexpected algorithm: ${algorithm}`);
   }
